@@ -9,7 +9,7 @@
     <com.troy.movableframelayout.MovableFrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left|bottom">
+        android:layout_gravity="left|top">
 
         <TextView
             android:layout_width="100dp"
@@ -23,22 +23,22 @@
 
     </com.troy.movableframelayout.MovableFrameLayout>
 
-    <!--<com.troy.movableframelayout.MovableFrameLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="right|bottom">-->
+    <com.troy.movableframelayout.MovableFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom">
 
-        <!--<TextView-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:text="Movable Block B"-->
-            <!--android:textColor="#ffffff"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:gravity="center"-->
-            <!--android:background="@color/colorPrimaryDark"/>-->
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:text="Movable Block B"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"/>
 
-    <!--</com.troy.movableframelayout.MovableFrameLayout>-->
+    </com.troy.movableframelayout.MovableFrameLayout>
 
 
 </FrameLayout>

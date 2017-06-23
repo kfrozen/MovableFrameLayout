@@ -10,8 +10,6 @@ import android.widget.FrameLayout;
  */
 public class MovableFrameLayout extends FrameLayout
 {
-    public static final int DEFAULT_BOUNDS = 20;
-
     private boolean mMovable;  //drag to move the view
 
     private boolean mIsFullScreen;
@@ -39,7 +37,10 @@ public class MovableFrameLayout extends FrameLayout
         initialize();
     }
 
-
+    /**
+    *  @param enabled when set to false, this view will become a normal FrameLayout,
+     *                and those made translations will be reset also.
+    */
     public void setMovable(boolean enabled)
     {
         mMovable = enabled;
@@ -52,6 +53,9 @@ public class MovableFrameLayout extends FrameLayout
         }
     }
 
+    /**
+    *  Use this method if your content view had a fullscreen state. For example, a video player.
+    */
     public void setFullScreen(boolean isFullScreen)
     {
         mIsFullScreen = isFullScreen;
