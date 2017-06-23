@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.troy.demo.MainActivity">
+
+    <com.troy.movableframelayout.MovableFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="Movable Block A"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/colorPrimary"/>
+
+    </com.troy.movableframelayout.MovableFrameLayout>
+
+    <!--<com.troy.movableframelayout.MovableFrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="right|bottom">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:text="Movable Block B"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:gravity="center"-->
+            <!--android:background="@color/colorPrimaryDark"/>-->
+
+    <!--</com.troy.movableframelayout.MovableFrameLayout>-->
+
+
+</FrameLayout>
