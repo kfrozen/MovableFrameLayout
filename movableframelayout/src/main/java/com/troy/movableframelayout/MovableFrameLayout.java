@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 
 /**
@@ -15,6 +16,8 @@ public class MovableFrameLayout extends FrameLayout
     private boolean mIsFullScreen;
 
     private Helper mHelper;
+
+    private float mTouchSlop;
 
     public MovableFrameLayout(Context context)
     {
@@ -100,9 +103,9 @@ public class MovableFrameLayout extends FrameLayout
             }
         }
 
-        if (mMovable)
+        if (mMovable && mHelper.onTouchEvent(ev))
         {
-            mHelper.onTouchEvent(ev);
+            return true;
         }
 
         return super.dispatchTouchEvent(ev);
@@ -117,6 +120,8 @@ public class MovableFrameLayout extends FrameLayout
     private void initialize()
     {
         mHelper = new Helper();
+
+        mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
 
         mMovable = true;
     }
@@ -141,41 +146,37 @@ public class MovableFrameLayout extends FrameLayout
             {
                 final int action = event.getAction();
 
+                final float x = event.getRawX();
+
+                final float y = event.getRawY();
+
                 switch (action)
                 {
                     case MotionEvent.ACTION_DOWN:
                     {
-                        final float x = event.getRawX();
-
-                        final float y = event.getRawY();
-
-                        mIsBeingDragged = true;
-
                         requestDisallowInterceptTouchEvent(true);
 
                         mLastMotionX = x;
 
                         mLastMotionY = y;
 
-                        break;
+                        return false;
                     }
                     case MotionEvent.ACTION_MOVE:
                     {
+                        final int deltaX = (int) (x - mLastMotionX);
+
+                        final int deltaY = (int) (y - mLastMotionY);
+
                         if (mIsBeingDragged)
                         {
-                            final float x = event.getRawX();
+                            innerHandleActionMove(x, y, deltaX, deltaY);
+                        }
+                        else if(Math.abs(deltaX) >= mTouchSlop || Math.abs(deltaY) >= mTouchSlop)
+                        {
+                            innerHandleActionMove(x, y, deltaX, deltaY);
 
-                            final float y = event.getRawY();
-
-                            final int deltaX = (int) (x - mLastMotionX);
-
-                            final int deltaY = (int) (y - mLastMotionY);
-
-                            mLastMotionX = x;
-
-                            mLastMotionY = y;
-
-                            move(deltaX, deltaY);
+                            mIsBeingDragged = true;
                         }
 
                         break;
@@ -194,6 +195,10 @@ public class MovableFrameLayout extends FrameLayout
 
                             requestDisallowInterceptTouchEvent(false);
                         }
+                        else
+                        {
+                            return false;
+                        }
 
                         break;
                     }
@@ -201,6 +206,15 @@ public class MovableFrameLayout extends FrameLayout
             }
 
             return true;
+        }
+
+        private void innerHandleActionMove(float x, float y, int deltaX, int deltaY)
+        {
+            mLastMotionX = x;
+
+            mLastMotionY = y;
+
+            move(deltaX, deltaY);
         }
 
         private void move(int x, int y)

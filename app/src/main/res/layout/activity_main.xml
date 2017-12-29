@@ -7,6 +7,7 @@
     tools:context="com.troy.demo.MainActivity">
 
     <com.troy.movableframelayout.MovableFrameLayout
+        android:id="@+id/layout_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|top">
@@ -24,6 +25,7 @@
     </com.troy.movableframelayout.MovableFrameLayout>
 
     <com.troy.movableframelayout.MovableFrameLayout
+        android:id="@+id/layout_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom">
